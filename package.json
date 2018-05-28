@@ -1,0 +1,32 @@
+{
+  "name": "ns_fieldconverter",
+  "version": "0.0.0",
+  "description": "fieldconverter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "node ./build.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Da-Sheng/ns_fieldconverter.git"
+  },
+  "keywords": [
+    "heatedloan",
+    "fieldconverter"
+  ],
+  "author": "mr.sheng",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react": "^6.24.1"
+  },
+  "dependencies": {
+    "antd": "3.0.2",
+    "chalk": "^2.4.1",
+    "moment": "^2.22.1",
+    "ns_logger": "^1.0.3",
+    "react": "15.5.4",
+    "rimraf": "^2.6.2"
+  }
+}
