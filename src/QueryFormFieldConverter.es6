@@ -27,12 +27,12 @@ import Logger from 'ns_logger';
 import FieldConverter from './FieldConverter';
 import QueryElementConverter from './QueryElementConverter';
 import BaseElementConverter from './BaseElementConverter';
-// import ImageViewConverter from './ImageViewConverter';
+import ImageViewConverter from './ImageViewConverter';
 class QueryFormFieldConverter extends FieldConverter {
 
   constructor() {
     super();
-    // this.addConverter(new ImageViewConverter());
+    this.addConverter(new ImageViewConverter());
     this.addConverter(new QueryElementConverter());
     this.addConverter(new BaseElementConverter());
   }

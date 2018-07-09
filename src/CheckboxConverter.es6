@@ -23,7 +23,8 @@ import {
 
 const FormItem = Form.Item;
 
-import Logger from 'ns_logger'
+import Logger from 'ns_logger';
+
 
 const logger = Logger.getLogger('CheckboxConverter');
 const Option = Select.Option;

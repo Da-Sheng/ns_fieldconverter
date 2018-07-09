@@ -20,6 +20,7 @@ import {
   Affix,
   Upload
 } from 'antd';
+// import 'antd/dist/antd.min.css'
 
 const FormItem = Form.Item;
 

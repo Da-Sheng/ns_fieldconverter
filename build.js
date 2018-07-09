@@ -2,7 +2,8 @@ const chalk = require('chalk');
 const { spawn } = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
-
+const firstCmd = './node_modules/.bin/rimraf lib';
+const secondCmd = './node_modules/.bin/babel src --copy-files --extensions .es6,.es,.jsx,js --out-dir lib';
 start();
 
 async function start() {
@@ -29,12 +30,12 @@ async function start() {
 
 async function runClear() {
   console.log(chalk.blue(`执行clear命令  start`));
-  await doCommand('./node_modules/.bin/rimraf lib');
+  await doCommand(firstCmd);
   console.log(chalk.blue(`执行clear命令  end`));
   successLog();
 }
 async function runServer() {
-  await doCommand(`./node_modules/.bin/babel src --copy-files --source-maps --extensions .es6,.es,.jsx,js --out-dir lib`);
+  await doCommand(secondCmd);
 }
 /**
  *
