@@ -45,8 +45,9 @@ class ResponseDataConverter {
     */
   transformResponseData(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     return wrapper((
-          {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<Input placeholder={field.placeholder} size="default" disabled="true" />)}
+          {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<Input placeholder={field.placeholder} size="default" disabled="true" {...props} />)}
     ), field);
   }
 

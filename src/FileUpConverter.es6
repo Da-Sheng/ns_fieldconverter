@@ -46,6 +46,7 @@ class FileUpConverter {
     */
   transformFileUp(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     const imageFileUpUrl = field.fileUpUrl;
     const OPTION_IMAGE =0x1;
     const OPTION_SAVE =0x1<<1;
@@ -68,7 +69,7 @@ class FileUpConverter {
       ({
       ...obj.props.form.getFieldDecorator(field.key, fieldOptions)
           (
-          <Upload action={url} onChange={obj.onFileUpChange}  fileList={obj.state.fileObjs} houZhui={obj.houZhui}>
+          <Upload action={url} onChange={obj.onFileUpChange}  fileList={obj.state.fileObjs} houZhui={obj.houZhui} {...props}>
             <Button type="ghost"
             >
               <Icon type="upload" /> 上传文件

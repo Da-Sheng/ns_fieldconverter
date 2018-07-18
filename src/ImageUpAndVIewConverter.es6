@@ -56,6 +56,7 @@ class ImageUpAndVIewConverter {
    */
   transformImageFile(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     const imageFileUpUrl = field.imageFileUpUrl;
     const OPTION_IMAGE =0x1;
     const OPTION_SAVE =0x1<<1;
@@ -89,7 +90,9 @@ class ImageUpAndVIewConverter {
                 fileList={obj.state.fileList}
                 onChange={obj.onImageFileChange}
                 onRemove={obj.onRemove}
-                onPreview={obj.handlePreview}>
+                onPreview={obj.handlePreview}
+                {...props}
+                >
           {obj.state.fileListSize ? "" : bpButton}
         </Upload>
         <Modal visible={obj.state.previewVisible} footer={null} onCancel={obj.handleCancel}>

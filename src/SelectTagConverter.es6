@@ -55,6 +55,7 @@ class SelectTagConverter {
     */
   transformSelectTag(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
 
     inputType = field.inputType ;         //限制输入个数
     dropdownStyle = field.dropdownStyle ;  //是否显示下拉菜单(true为隐藏下拉菜单)
@@ -69,6 +70,7 @@ class SelectTagConverter {
                   placeholder = {field.placeholder}
                   tokenSeparators = {[',','，']} //切割规则是中文逗号也可以是英文逗号
                   dropdownStyle = {dropdownStyle}
+                  {...props}
           >
             {obj.state.selectTagChildren}
           </Select>)}

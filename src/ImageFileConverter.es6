@@ -91,6 +91,7 @@ class ImageFileConverter {
 
   transformImageFile(option) {
       const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+      const { props } = field;
       const imageFileUpUrl = field.imageFileUpUrl;
       const OPTION_IMAGE =0x1;
       const OPTION_SAVE =0x1<<1;
@@ -147,7 +148,9 @@ class ImageFileConverter {
                      disabled={
                        obj.props.formItemsConfig
                        && obj.props.formItemsConfig[field.key]
-                       && obj.props.formItemsConfig[field.key].disabled}>
+                       && obj.props.formItemsConfig[field.key].disabled}
+                      {...props}
+              >
               <Button type="ghost"
                       disabled={
                         obj.props.formItemsConfig

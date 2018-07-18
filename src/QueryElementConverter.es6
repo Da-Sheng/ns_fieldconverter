@@ -42,6 +42,7 @@ class QueryElementFieldConverter {
     // TODO: 这里是否要做schema校验
     const options = [];
     const {getFieldProps, field, fieldOptions, wrapper,obj} = option;
+    const { props } = field;
     let id = 0;
     logger.debug('transform field %o to Select component', field);
     if (typeof field.options === 'function') {
@@ -58,7 +59,8 @@ class QueryElementFieldConverter {
                                                                             mode={field.mode}
                                                                             showSearch={field.showSearch}
                                                                             filterOption={field.filterOption || true}
-                                                                            optionLabelProp={field.optionLabelProp || 'children'}>
+                                                                            optionLabelProp={field.optionLabelProp || 'children'}
+                                                                            {...props}>
         {options}
       </Select>)}
     ), field);

@@ -76,6 +76,7 @@ class FieldConverter {
     //  }
     // }
     const {getFieldProps, field, fieldOptions, wrapper, obj} = option;
+    const { props } = field;
 
     if (field.isHidethis) {
       return;
@@ -86,7 +87,7 @@ class FieldConverter {
     if (this.primaryKey === field.key) { //FIXME：this? 2017年9月18日11:39:18 Rival
       return wrapper((
         {...obj.props.form.getFieldDecorator(field.key)(<TextArea autosize={{ minRows: 1, maxRows: 10 }} disabled
-          size="default"  />)}
+          size="default" {...props} />)}
       ), field);
     }
 

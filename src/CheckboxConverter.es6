@@ -47,6 +47,7 @@ class CheckboxConverter {
     */
   transformCheckboxConverter(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
 
     let defalutCheckOptions = [];
     field.defalutCheck.forEach((option) => {
@@ -55,7 +56,7 @@ class CheckboxConverter {
 
 
     return wrapper((
-      {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<CheckboxGroup options={defalutCheckOptions} onChange={obj.onCheckBoxChange}  />)}
+      {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<CheckboxGroup options={defalutCheckOptions} onChange={obj.onCheckBoxChange} { ...props } />)}
     ), field);
   }
 

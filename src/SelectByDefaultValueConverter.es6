@@ -46,6 +46,7 @@ class SelectByDefaultValueConverter {
     */
   transformSelectByDefault(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     let selectOptionss = [];
     field.defaultSelect.forEach((option) => {
       selectOptionss.push(<Option key={option.value} value={option.value}>{option.name}</Option>);
@@ -58,6 +59,7 @@ class SelectByDefaultValueConverter {
         onChange={obj.onSelectByDefaultValueChange}
         placeholder="请选择"
         onSelect={!!field.onSelect ? field.onSelect : () => {}}
+        {...props}
         >
         {selectOptionss}
       </Select>)}

@@ -45,8 +45,9 @@ class UploadElementConverter {
     */
   transformUpload(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     return wrapper((
-      {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<Upload fileList={obj.state.fileList} action={field.actionAdr} listType="picture" onChange={obj.handleUpChange}>
+      {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<Upload fileList={obj.state.fileList} action={field.actionAdr} listType="picture" onChange={obj.handleUpChange} {...props}>
         <Button type="ghost">
           <Icon type="upload" /> 点击上传
               </Button>

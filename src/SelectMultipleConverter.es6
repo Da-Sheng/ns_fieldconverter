@@ -56,6 +56,7 @@ class SelectTagConverter {
     */
   transformSelectTag(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
     let selectOptionss = [];
     field.defaultSelect.forEach((option) => {
       selectOptionss.push(<Option key={option.value} value={option.value}>{option.name}</Option>);
@@ -70,6 +71,7 @@ class SelectTagConverter {
                   placeholder = {field.placeholder}
                   tokenSeparators = {[',','，']} //切割规则是中文逗号也可以是英文逗号
                   initialValue = {field.defaultValue}
+                  {...props}
           >
             {selectOptionss}
           </Select>)}

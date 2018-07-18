@@ -47,6 +47,7 @@ class RadioConverter {
     */
   transformRadioConverter(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
+    const { props } = field;
 
     let defalutRadio = [];
 
@@ -55,7 +56,7 @@ class RadioConverter {
     });
 
     return wrapper(({...obj.props.form.getFieldDecorator(field.key,fieldOptions)
-            (<RadioGroup initialValue={field.value} onChange={field.onChange && field.onChange.bind(field)}>
+            (<RadioGroup initialValue={field.value} onChange={field.onChange && field.onChange.bind(field)} {...props}>
               {defalutRadio}
             </RadioGroup>)})
     , field);
