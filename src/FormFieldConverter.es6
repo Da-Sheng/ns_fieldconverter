@@ -76,6 +76,8 @@ class FormFieldConverter extends FieldConverter {
    * 修订人：Rival
    */
   colWrapper(formItem, field) {
+    const hdisabled = formItem.props.hdisabled;
+    delete formItem.props.hdisabled;
     return (
       <FormItem key={field.key}
                 className={field.formItemClassName}
@@ -83,7 +85,7 @@ class FormFieldConverter extends FieldConverter {
                 labelCol={field.labelCol != undefined ? field.labelCol : {span: 6}}
                 wrapperCol={field.wrapperCol != undefined  ? field.wrapperCol : {span : 18}}
                 style={{
-                  display: formItem.props.disabled ? 'none' : 'block'
+                  display: hdisabled ? 'none' : 'block'
                 }}>
         {formItem}
       </FormItem>

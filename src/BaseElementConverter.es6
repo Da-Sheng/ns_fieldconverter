@@ -68,7 +68,8 @@ class BaseElementConverter {
         logger.debug('transform field %o to integer input', field);
         return wrapper((
           {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<InputNumber size="default"
-                                                                                    disabled={
+          disabled={field.disabled}
+                                                                                    hdisabled={
                                                                                       obj.props.formItemsConfig
                                                                                       && obj.props.formItemsConfig[field.key]
                                                                                       && obj.props.formItemsConfig[field.key].disabled
@@ -99,7 +100,8 @@ class BaseElementConverter {
         return wrapper((
           {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<TimePicker  showTime format="HH:mm:ss"
                                                                                     placeholder={field.placeholder || '请选择时间'}
-                                                                                    disabled={
+                                                                                    disabled={field.disabled}
+                                                                                    hdisabled={
                                                                                       obj.props.formItemsConfig
                                                                                       && obj.props.formItemsConfig[field.key]
                                                                                       && obj.props.formItemsConfig[field.key].disabled
@@ -111,7 +113,8 @@ class BaseElementConverter {
         return wrapper((
            {...obj.props.form.getFieldDecorator(field.key,fieldOptions)(<Input onClick={field.getModalInnerTable}
                                                                                placeholder={field.placeholder}
-                                                                               disabled={
+                                                                               disabled={field.disabled}
+                                                                               hdisabled={
                                                                                  obj.props.formItemsConfig
                                                                                  && obj.props.formItemsConfig[field.key]
                                                                                  && obj.props.formItemsConfig[field.key].disabled

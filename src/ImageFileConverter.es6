@@ -145,14 +145,16 @@ class ImageFileConverter {
                      action={url}
                      onChange={obj.onImageFileChange}
                      fileList={obj.state.fileList}
-                     disabled={
+                     disabled={field.disabled}
+                     hdisabled={
                        obj.props.formItemsConfig
                        && obj.props.formItemsConfig[field.key]
                        && obj.props.formItemsConfig[field.key].disabled}
                       {...props}
               >
               <Button type="ghost"
-                      disabled={
+                      disabled={field.disabled}
+                      hdisabled={
                         obj.props.formItemsConfig
                         && obj.props.formItemsConfig[field.key]
                         && obj.props.formItemsConfig[field.key].disabled}>
