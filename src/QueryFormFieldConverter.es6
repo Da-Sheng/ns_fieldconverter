@@ -45,9 +45,10 @@ class QueryFormFieldConverter extends FieldConverter {
    * @returns {XML}
    */
   colWrapper(formItem, field) {
+    const { labelColSize = 6, wrapperColSize = 18 } = field;
     return (
       <Col key={field.key} sm={8}>
-        <FormItem key={field.key} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+        <FormItem key={field.key} label={field.title} labelCol={{ span: labelColSize }} wrapperCol={{ span: wrapperColSize }}>
           {formItem}
         </FormItem>
       </Col>
