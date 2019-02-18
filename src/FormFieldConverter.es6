@@ -88,6 +88,7 @@ class FormFieldConverter extends FieldConverter {
                   display: hdisabled ? 'none' : 'block'
                 }}>
         {formItem}
+        {field.extraDom ? field.extraDom : null}
       </FormItem>
     );
   }
