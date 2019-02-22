@@ -77,7 +77,6 @@ class FormFieldConverter extends FieldConverter {
    */
   colWrapper(formItem, field) {
     const hdisabled = formItem.props.hdisabled;
-    delete formItem.props.hdisabled;
     return (
       <FormItem key={field.key}
                 className={field.formItemClassName}
