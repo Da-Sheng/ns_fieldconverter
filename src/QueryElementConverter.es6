@@ -33,7 +33,7 @@ const logger = Logger.getLogger('QueryElementFieldConverter');
 class QueryElementFieldConverter {
 
 
- /**
+  /**
    * 将schema中的一列转换为下拉框
    *
    * @param field
@@ -54,15 +54,15 @@ class QueryElementFieldConverter {
     });
 
     return wrapper((
-      {...obj.props.form.getFieldDecorator(field.key, fieldOptions)(<Select placeholder={field.placeholder || '请选择'}
-                                                                            size="default"
-                                                                            mode={field.mode}
-                                                                            showSearch={field.showSearch}
-                                                                            filterOption={field.filterOption || true}
-                                                                            optionLabelProp={field.optionLabelProp || 'children'}
-                                                                            {...props}>
-        {options}
-      </Select>)}
+        {...obj.props.form.getFieldDecorator(field.key, fieldOptions)(<Select placeholder={field.placeholder || '请选择'}
+                                                                              size="default"
+                                                                              mode={field.mode}
+                                                                              showSearch={field.showSearch}
+                                                                              filterOption={field.filterOption || true}
+                                                                              optionLabelProp={field.optionLabelProp || 'children'}
+                                                                              {...props}>
+            {options}
+          </Select>)}
     ), field);
   }
 
@@ -82,14 +82,14 @@ class QueryElementFieldConverter {
     });
 
     return wrapper((
-      <RadioGroup {...getFieldProps(field.key, {initialValue: field.initialValue}) }
-                  defaultValue={field.initialValue}>
-        {options}
-      </RadioGroup>
+        <RadioGroup {...getFieldProps(field.key, {initialValue: field.initialValue}) }
+                    defaultValue={field.initialValue}>
+          {options}
+        </RadioGroup>
     ), field);
   }
 
-    /**
+  /**
    * 将schema中的一列转换为checkbox
    *
    * @param field
@@ -104,7 +104,7 @@ class QueryElementFieldConverter {
     });
 
     return wrapper((
-      <CheckboxGroup options={options} {...getFieldProps(field.key) } />
+        <CheckboxGroup options={options} {...getFieldProps(field.key) } />
     ), field);
   }
 
@@ -124,13 +124,13 @@ class QueryElementFieldConverter {
     });
 
     return wrapper((
-      <Select mode='multiple' placeholder={field.placeholder || '请选择'} size="default" {...getFieldProps(field.key) }>
-        {options}
-      </Select>
+        <Select mode='multiple' placeholder={field.placeholder || '请选择'} size="default" {...getFieldProps(field.key) }>
+          {options}
+        </Select>
     ), field);
   }
 
-    /**
+  /**
    * 也是个辅助函数, 由于是范围查询, 输入的formItem是两个, 一个用于begin一个用于end
    *
    * @param beginFormItem
@@ -143,20 +143,20 @@ class QueryElementFieldConverter {
     // col内部又用了一个row做布局
     // const {getFieldProps} = this.props.form;
     return (
-      <Col key={`${field.key}Begin`} sm={8}>
-        <Row>
-          <Col span={16}>
-            <FormItem key={`${field.key}Begin`} label={field.title} labelCol={{ span: 15 }} wrapperCol={{ span: 9 }}>
-              {beginFormItem}
-            </FormItem>
-          </Col>
-          <Col span={7} offset={1}>
-            <FormItem key={`${field.key}End`} labelCol={{ span: 10 }} wrapperCol={{ span: 14 }}>
-              {endFormItem}
-            </FormItem>
-          </Col>
-        </Row>
-      </Col>
+        <Col key={`${field.key}Begin`} sm={8}>
+          <Row>
+            <Col span={16}>
+              <FormItem key={`${field.key}Begin`} label={field.title} labelCol={{ span: 15 }} wrapperCol={{ span: 9 }}>
+                {beginFormItem}
+              </FormItem>
+            </Col>
+            <Col span={7} offset={1}>
+              <FormItem key={`${field.key}End`} labelCol={{ span: 10 }} wrapperCol={{ span: 14 }}>
+                {endFormItem}
+              </FormItem>
+            </Col>
+          </Row>
+        </Col>
     );
   }
 
@@ -172,52 +172,53 @@ class QueryElementFieldConverter {
     let beginFormItem;
     let endFormItem;
     const {getFieldProps, field, fieldOptions, wrapper} = option;
+    const { props } = field;
 
     switch (field.dataType) {
       case 'int':
         logger.debug('transform field %o to integer BETWEEN component', field);
         beginFormItem = (<InputNumber size="default"
-          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
+                                      placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
         endFormItem = (<InputNumber size="default"
-          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
+                                    placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
         cols.push(this.betweenColWrapper(beginFormItem, endFormItem, field));
         break;
       case 'float':
         logger.debug('transform field %o to float BETWEEN component', field);
         beginFormItem = (<InputNumber step={0.01} size="default"
-          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
+                                      placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
         endFormItem = (<InputNumber step={0.01} size="default"
-          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
+                                    placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
         cols.push(this.betweenColWrapper(beginFormItem, endFormItem, field));
         break;
-      // datetime类型的between要占用两个Col
-      // 不写辅助函数了, 直接这里写jsx吧...
+        // datetime类型的between要占用两个Col
+        // 不写辅助函数了, 直接这里写jsx吧...
       case 'datetime':
         logger.debug('transform field %o to datetime BETWEEN component', field);
         cols.push(
-          <Col key={`${field.key}Begin`} span={8}>
-            <FormItem key={`${field.key}Begin`} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
-              <DatePicker  format="YYYY-MM-DD"
-                placeholder={field.placeholderBegin || '开始日期'} {...getFieldProps(`${field.key}Begin`) } />
-            </FormItem>
-          </Col>
+            <Col key={`${field.key}Begin`} span={8}>
+              <FormItem key={`${field.key}Begin`} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
+                <DatePicker  format="YYYY-MM-DD"
+                             placeholder={field.placeholderBegin || '开始日期'} {...getFieldProps(`${field.key}Begin`) } {...props}/>
+              </FormItem>
+            </Col>
         );
         cols.push(<Col key={`${field.key}End`} span={8}>
           <FormItem key={`${field.key}End`} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
             <DatePicker format="YYYY-MM-DD"
-              placeholder={field.placeholderEnd || '结束日期'} {...getFieldProps(`${field.key}End`) } />
+                        placeholder={field.placeholderEnd || '结束日期'} {...getFieldProps(`${field.key}End`) } {...props}/>
           </FormItem>
         </Col>);
         break;
       case 'datetimes':
         logger.debug('transform field %o to datetime BETWEEN component', field);
         cols.push(
-          <Col key={`${field.key}`} span={16}>
-            <FormItem key={`${field.key}`} label={field.title} labelCol={{ span: 3 }} wrapperCol={{ span: 18 }}>
-              <RangePicker format="YYYY-MM-DD HH:mm:ss" showTime={{defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]}}
-                placeholder={['开始日期', '结束日期']} {...getFieldProps(`${field.key}`) } />
-            </FormItem>
-          </Col>
+            <Col key={`${field.key}`} span={16}>
+              <FormItem key={`${field.key}`} label={field.title} labelCol={{ span: 3 }} wrapperCol={{ span: 18 }}>
+                <RangePicker format="YYYY-MM-DD HH:mm:ss" showTime={{defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]}}
+                             placeholder={['开始日期', '结束日期']} {...getFieldProps(`${field.key}`) } {...props}/>
+              </FormItem>
+            </Col>
         );
         break;
       default:
@@ -265,3 +266,4 @@ class QueryElementFieldConverter {
 }
 
 export default QueryElementFieldConverter;
+
