@@ -74,16 +74,16 @@ class QueryElementFieldConverter {
   transformRadio(option) {
     const options = [];
     const {getFieldProps, field, fieldOptions, wrapper} = option;
-
+    const { props = {} } = field;
 
     logger.debug('transform field %o to Radio component', field);
     field.options.forEach((option) => {
-      options.push(<Radio key={option.key} value={option.key}>{option.value}</Radio>);
+      options.push(<Radio key={option.key} value={option.key} {...props}>{option.value}</Radio>);
     });
 
     return wrapper((
       <RadioGroup {...getFieldProps(field.key, {initialValue: field.initialValue}) }
-                  defaultValue={field.initialValue}>
+                  defaultValue={field.initialValue} {...props}>
         {options}
       </RadioGroup>
     ), field);
@@ -172,22 +172,23 @@ class QueryElementFieldConverter {
     let beginFormItem;
     let endFormItem;
     const {getFieldProps, field, fieldOptions, wrapper} = option;
+    const { props = {} } = field;
 
     switch (field.dataType) {
       case 'int':
         logger.debug('transform field %o to integer BETWEEN component', field);
         beginFormItem = (<InputNumber size="default"
-          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
+          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } {...props} />);
         endFormItem = (<InputNumber size="default"
-          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
+          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } {...props} />);
         cols.push(this.betweenColWrapper(beginFormItem, endFormItem, field));
         break;
       case 'float':
         logger.debug('transform field %o to float BETWEEN component', field);
         beginFormItem = (<InputNumber step={0.01} size="default"
-          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } />);
+          placeholder={field.placeholderBegin || '最小值'} {...getFieldProps(`${field.key}Begin`) } {...props} />);
         endFormItem = (<InputNumber step={0.01} size="default"
-          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } />);
+          placeholder={field.placeholderEnd || '最大值'} {...getFieldProps(`${field.key}End`) } {...props} />);
         cols.push(this.betweenColWrapper(beginFormItem, endFormItem, field));
         break;
       // datetime类型的between要占用两个Col
@@ -198,14 +199,14 @@ class QueryElementFieldConverter {
           <Col key={`${field.key}Begin`} span={8}>
             <FormItem key={`${field.key}Begin`} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
               <DatePicker  format="YYYY-MM-DD"
-                placeholder={field.placeholderBegin || '开始日期'} {...getFieldProps(`${field.key}Begin`) } />
+                placeholder={field.placeholderBegin || '开始日期'} {...getFieldProps(`${field.key}Begin`) } {...props} />
             </FormItem>
           </Col>
         );
         cols.push(<Col key={`${field.key}End`} span={8}>
           <FormItem key={`${field.key}End`} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }}>
             <DatePicker format="YYYY-MM-DD"
-              placeholder={field.placeholderEnd || '结束日期'} {...getFieldProps(`${field.key}End`) } />
+              placeholder={field.placeholderEnd || '结束日期'} {...getFieldProps(`${field.key}End`) } {...props} />
           </FormItem>
         </Col>);
         break;
@@ -215,7 +216,7 @@ class QueryElementFieldConverter {
           <Col key={`${field.key}`} span={16}>
             <FormItem key={`${field.key}`} label={field.title} labelCol={{ span: 3 }} wrapperCol={{ span: 18 }}>
               <RangePicker format="YYYY-MM-DD HH:mm:ss" showTime={{defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]}}
-                placeholder={['开始日期', '结束日期']} {...getFieldProps(`${field.key}`) } />
+                placeholder={['开始日期', '结束日期']} {...getFieldProps(`${field.key}`) } {...props} />
             </FormItem>
           </Col>
         );

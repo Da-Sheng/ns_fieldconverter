@@ -48,7 +48,7 @@ class SelectByRequestValueConverter {
    */
   transformSelectRequestValue(option) {
     const {getFieldProps, field, fieldOptions, obj, wrapper} = option;
-
+    const { props = {} } = field;
     let selectOptionss = [];
     if(field.requestSelectValue){
       field.requestSelectValue.forEach((option) => {
@@ -62,6 +62,7 @@ class SelectByRequestValueConverter {
                     placeholder={field.placeholder}
                     initialValue={field.value}
                     {...getFieldProps(field.key, fieldOptions) }
+                    {...props}
                   >
                     {selectOptionss}
                   </Select> : <Select
@@ -69,6 +70,7 @@ class SelectByRequestValueConverter {
                     style={{ width: 200 }}
                     placeholder={field.placeholder}
                     {...getFieldProps(field.key, fieldOptions) }
+                    {...props}
                   >
                     {selectOptionss}
                   </Select>)
