@@ -1,6 +1,6 @@
 {
   "name": "ns_fieldconverter",
-  "version": "0.1.1",
+  "version": "0.1.5",
   "description": "fieldconverter",
   "main": "index.js",
   "scripts": {
@@ -23,10 +23,10 @@
     "ns_logger": "1.0.4"
   },
   "dependencies": {
-    "antd": "3.16.4",
+    "antd": "3.0.2",
     "chalk": "^2.4.1",
     "moment": "^2.22.1",
-    "react": "16.7.0",
+    "react": "15.5.4",
     "rimraf": "^2.6.2"
   }
 }

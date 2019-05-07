@@ -77,18 +77,17 @@ class FormFieldConverter extends FieldConverter {
    */
   colWrapper(formItem, field) {
     const hdisabled = formItem.props.hdisabled;
-    const { FormItemProps = {} } = field;
+    const { formItemProps = {}, extra = '' } = field;
     return (
       <FormItem key={field.key}
                 className={field.formItemClassName}
                 label={field.title}
-                extra={field.extra}
+                extra={extra}
                 labelCol={field.labelCol != undefined ? field.labelCol : {span: 6}}
                 wrapperCol={field.wrapperCol != undefined  ? field.wrapperCol : {span : 18}}
                 style={{
                   display: hdisabled ? 'none' : 'block'
                 }}
-                {...FormItemProps}
                 >
         {formItem}
         {field.extraDom ? field.extraDom : null}

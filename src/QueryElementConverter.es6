@@ -139,7 +139,7 @@ class QueryElementFieldConverter {
    * @returns {XML}
    */
   betweenColWrapper = (beginFormItem, endFormItem, field) => {
-    const { FormItemProps = {} } = field;
+    const { formItemProps = {}, extra = '' } = field;
     // 布局真是个麻烦事
     // col内部又用了一个row做布局
     // const {getFieldProps} = this.props.form;
@@ -147,12 +147,12 @@ class QueryElementFieldConverter {
       <Col key={`${field.key}Begin`} sm={8}>
         <Row>
           <Col span={16}>
-            <FormItem extra={field.extra} key={`${field.key}Begin`} label={field.title} labelCol={{ span: 15 }} wrapperCol={{ span: 9 }} {...FormItemProps}>
+            <FormItem extra={extra} key={`${field.key}Begin`} label={field.title} labelCol={{ span: 15 }} wrapperCol={{ span: 9 }} >
               {beginFormItem}
             </FormItem>
           </Col>
           <Col span={7} offset={1}>
-            <FormItem extra={field.extra} key={`${field.key}End`} labelCol={{ span: 10 }} wrapperCol={{ span: 14 }} {...FormItemProps}>
+            <FormItem extra={extra} key={`${field.key}End`} labelCol={{ span: 10 }} wrapperCol={{ span: 14 }} >
               {endFormItem}
             </FormItem>
           </Col>
@@ -173,7 +173,7 @@ class QueryElementFieldConverter {
     let beginFormItem;
     let endFormItem;
     const {getFieldProps, field, fieldOptions, wrapper} = option;
-    const { props = {}, FormItemProps = {} } = field;
+    const { props = {}, formItemProps = {}, extra = '' } = field;
 
     switch (field.dataType) {
       case 'int':
@@ -198,14 +198,14 @@ class QueryElementFieldConverter {
         logger.debug('transform field %o to datetime BETWEEN component', field);
         cols.push(
           <Col key={`${field.key}Begin`} span={8}>
-            <FormItem extra={field.extra} key={`${field.key}Begin`} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} {...FormItemProps}>
+            <FormItem extra={extra} key={`${field.key}Begin`} label={field.title} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} >
               <DatePicker  format="YYYY-MM-DD"
                 placeholder={field.placeholderBegin || '开始日期'} {...getFieldProps(`${field.key}Begin`) } {...props} />
             </FormItem>
           </Col>
         );
         cols.push(<Col key={`${field.key}End`} span={8}>
-          <FormItem extra={field.extra} key={`${field.key}End`} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} {...FormItemProps}>
+          <FormItem extra={extra} key={`${field.key}End`} labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} >
             <DatePicker format="YYYY-MM-DD"
               placeholder={field.placeholderEnd || '结束日期'} {...getFieldProps(`${field.key}End`) } {...props} />
           </FormItem>
@@ -215,7 +215,7 @@ class QueryElementFieldConverter {
         logger.debug('transform field %o to datetime BETWEEN component', field);
         cols.push(
           <Col key={`${field.key}`} span={16}>
-            <FormItem extra={field.extra} key={`${field.key}`} label={field.title} labelCol={{ span: 3 }} wrapperCol={{ span: 18 }} {...FormItemProps}>
+            <FormItem extra={extra} key={`${field.key}`} label={field.title} labelCol={{ span: 3 }} wrapperCol={{ span: 18 }} >
               <RangePicker format="YYYY-MM-DD HH:mm:ss" showTime={{defaultValue: [moment('00:00:00', 'HH:mm:ss'), moment('23:59:59', 'HH:mm:ss')]}}
                 placeholder={['开始日期', '结束日期']} {...getFieldProps(`${field.key}`) } {...props} />
             </FormItem>
