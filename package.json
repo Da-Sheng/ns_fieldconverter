@@ -1,6 +1,6 @@
 {
   "name": "ns_fieldconverter",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "fieldconverter",
   "main": "index.js",
   "scripts": {

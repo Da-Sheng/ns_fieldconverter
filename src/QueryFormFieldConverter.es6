@@ -50,6 +50,7 @@ class QueryFormFieldConverter extends FieldConverter {
       <Col key={field.key} sm={8}>
         <FormItem extra={extra} key={field.key} label={field.title}
           labelCol={{ span: labelColSize }} wrapperCol={{ span: wrapperColSize }}
+          {...formItemProps}
         >
           {formItem}
         </FormItem>
